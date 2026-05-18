@@ -15,6 +15,7 @@ Here is an example specifically for electron on how to possibly implement this f
 ```js
 let updateCheck = await AppUpdater.check("https://dcts.community/app", { // no ending slash!
     includeOsUrl: true, // on windows, the url would become https://dcts.community/app-win32
+    version: app.getVersion()
 })
 
 // if available show prompt

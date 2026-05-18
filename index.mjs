@@ -5,12 +5,13 @@ import path from "path";
 
 export default class AppUpdater {
     static async check(url, options = {
-        includeOsUrl: false
+        includeOsUrl: false,
+        version: null
     }) {
         console.log(options)
         if (!url) throw new Error("Oi ma'e no fockin url was provided! What da hell man?!")
         if (url?.endsWith("/")) throw new Error("The url isnt allowed to end with a '/' ffs!")
-        if (!packageJson?.version) throw new Error("Package JSON doesnt seem to contain version info")
+        if (!options?.version) throw new Error("No version specified")
 
         let updateUrl = `${url}${options?.includeOsUrl ? `-${os.platform()}` : ""}/update.exe`;
         let versionUrl = `${url}${options?.includeOsUrl ? `-${os.platform()}` : ""}/version.txt`;
@@ -21,7 +22,7 @@ export default class AppUpdater {
         // some parsing shit
         let remoteVersion = await this.getRemoteVersion(versionUrl);
         let parsedRemoteVersion = this.parseVersion(remoteVersion);
-        let parsedCurrentVerion = this.parseVersion(packageJson.version);
+        let parsedCurrentVerion = this.parseVersion(options.version);
 
         // looks like a new update is available!!
         if (parsedRemoteVersion && parsedCurrentVerion && parsedRemoteVersion > parsedCurrentVerion) {
