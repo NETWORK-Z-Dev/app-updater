@@ -1,0 +1,14 @@
+{
+  "name": "@hackthedev/app-updater",
+  "version": "1.0.0",
+  "description": "",
+  "license": "UNLICENSED",
+  "author": "",
+  "repository": {
+    "url": "https://github.com/NETWORK-Z-Dev/app-updater"
+  },
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
